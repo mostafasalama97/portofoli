@@ -16,7 +16,7 @@ export const navLinks = [
 const services = [
   {
     title: "AI-Powered Full Stack Apps",
-    icon: "https://cdn.simpleicons.org/openai/ffffff",
+    icon: "https://cdn.simpleicons.org/langchain/ffffff",
   },
   {
     title: "Automation & Agent Workflows",
@@ -25,10 +25,6 @@ const services = [
   {
     title: "Scalable Backend Architecture",
     icon: "https://cdn.simpleicons.org/nodedotjs/5fa04e",
-  },
-  {
-    title: "Data & Analytics Platforms",
-    icon: "https://cdn.simpleicons.org/postgresql/4169e1",
   },
 ];
 

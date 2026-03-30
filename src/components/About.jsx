@@ -57,8 +57,8 @@ const About = () => {
         overhead.
       </motion.p>
 
-      <div className='mt-20 flex flex-wrap gap-10'>
-        {services.map((service, index) => (
+      <div className='mt-20 flex flex-wrap justify-center gap-10'>
+        {services.slice(0, 3).map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}
       </div>
