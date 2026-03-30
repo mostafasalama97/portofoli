@@ -1,5 +1,4 @@
-import React from "react";
-import {Tilt} from "react-tilt";
+import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
@@ -16,6 +15,8 @@ const ProjectCard = ({
   image,
   source_code_link,
 }) => {
+  const isLocalImage = image.startsWith("/");
+
   return (
     <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
       <Tilt
@@ -26,15 +27,28 @@ const ProjectCard = ({
         }}
         className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full'
       >
-        <div className='relative w-full h-[230px]'>
+        <div
+          className={`relative w-full h-[230px] rounded-2xl overflow-hidden ${
+            isLocalImage ? "bg-black-100" : "bg-[#1c1c2a]"
+          }`}
+        >
           <img
             src={image}
-            alt='project_image'
-            className='w-full h-full object-cover rounded-2xl'
+            alt={`${name} preview`}
+            loading='lazy'
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = "/logo2.svg";
+            }}
+            className={`w-full h-full ${
+              isLocalImage ? "object-cover object-center" : "object-contain p-6"
+            }`}
           />
 
           <div className='absolute inset-0 flex justify-end m-3 card-img_hover'>
-            <div
+            <button
+              type='button'
+              aria-label={`Open source code for ${name}`}
               onClick={() => window.open(source_code_link, "_blank")}
               className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'
             >
@@ -43,7 +57,7 @@ const ProjectCard = ({
                 alt='source code'
                 className='w-1/2 h-1/2 object-contain'
               />
-            </div>
+            </button>
           </div>
         </div>
 

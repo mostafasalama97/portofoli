@@ -1,4 +1,4 @@
-import { useState , useEffect} from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import {styles} from '../styles'
 import {navLinks} from "../constants"
@@ -47,7 +47,7 @@ const Navbar = () => {
           <div className="sm:hidden flex flex-1 justify-end items-center">
             <img 
             src={toggle ? close : menu}
-            alt="menu"
+            alt={toggle ? "Close menu" : "Open menu"}
             className="w-[28px] h-[28px] object-contain cursor-pointer"
             onClick={() => setToggle(!toggle)}
             />
@@ -65,7 +65,10 @@ const Navbar = () => {
                           ? "text-white"
                           : "text-secondary"
                       } font-poppins font-medium cursor-pointer text-[16px]`}
-                      onClick={() => setActive(link.title)}
+                      onClick={() => {
+                        setActive(link.title);
+                        setToggle(false);
+                      }}
                     >
                       <a href={`#${link.id}`}>{link.title}</a>
                     </li>

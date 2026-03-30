@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../Loader";
@@ -30,8 +30,12 @@ const EarthCanvas = () => {
     <Canvas
       shadows
       frameloop="demand"
-      dpr={[1, 2]}
-      gl={{ preserveDrawingBuffer: true, toneMappingExposure: 1.5 }}
+      dpr={[1, 1.5]}
+      gl={{
+        antialias: false,
+        powerPreference: "high-performance",
+        toneMappingExposure: 1.5,
+      }}
       camera={{
         fov: 45,
         near: 0.1,

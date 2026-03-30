@@ -1,38 +1,38 @@
-import logo from "./logo.png";
-import backend from "./backend.png";
-import creator from "./creator.png";
-import mobile from "./mobile.png";
-import web from "./web.png";
-import github from "./github.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
-
-import css from "./tech/css.png";
-import docker from "./tech/docker.png";
-import figma from "./tech/figma.png";
-import git from "./tech/git.png";
-import html from "./tech/html.png";
-import javascript from "./tech/javascript.png";
-import mongodb from "./tech/mongodb.png";
-import nodejs from "./tech/nodejs.png";
-import reactjs from "./tech/reactjs.png";
-import redux from "./tech/redux.png";
-import tailwind from "./tech/tailwind.png";
-import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
+const logo = "/logo.png";
 
-import meta from "./company/meta.png";
-import shopify from "./company/shopify.png";
-import starbucks from "./company/starbucks.png";
-import itqan from "./company/itqan.png";
-import tesla from "./company/tesla.png";
-
-import carrent from "./carrent.png";
-import voice from "./voice.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
-import sms from "./sms.png";
-import expense from "./expense.png";
+// Fallback icon assets to avoid runtime import failures when PNGs are missing.
+const fallback = threejs;
+const backend = fallback;
+const creator = fallback;
+const mobile = fallback;
+const web = fallback;
+const github = fallback;
+const css = fallback;
+const docker = fallback;
+const figma = fallback;
+const git = fallback;
+const html = fallback;
+const javascript = fallback;
+const mongodb = fallback;
+const nodejs = fallback;
+const reactjs = fallback;
+const redux = fallback;
+const tailwind = fallback;
+const typescript = fallback;
+const meta = fallback;
+const shopify = fallback;
+const starbucks = fallback;
+const itqan = fallback;
+const tesla = fallback;
+const carrent = fallback;
+const voice = fallback;
+const jobit = fallback;
+const tripguide = fallback;
+const sms = fallback;
+const expense = fallback;
 
 export {
   voice,

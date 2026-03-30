@@ -1,7 +1,9 @@
+import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
-import { ComputersCanvas } from "./canvas";
+
+const ComputersCanvas = lazy(() => import("./canvas/Computers"));
 
 const Hero = () => {
   return (
@@ -19,16 +21,24 @@ const Hero = () => {
             Hi, I'm <span className='text-[#915EFF]'>Mostafa</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I develop Everything, <br className='sm:block hidden' />
-            IoT , web applications and AI Applications
+            I build high-impact digital products, <br className='sm:block hidden' />
+            from IoT systems to web and AI applications
           </p>
         </div>
       </div>
 
-      <ComputersCanvas />
-{/* accessibility for mobile screen */}
+      <Suspense
+        fallback={
+          <div className='absolute inset-0 flex items-center justify-center'>
+            <span className='canvas-loader' />
+          </div>
+        }
+      >
+        <ComputersCanvas />
+      </Suspense>
+      {/* accessibility for mobile screen */}
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
-        <a href='#about'>
+        <a href='#about' aria-label='Scroll to about section'>
           <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
             <motion.div
               animate={{

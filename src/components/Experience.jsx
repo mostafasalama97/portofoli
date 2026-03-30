@@ -1,4 +1,3 @@
-import React from "react";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -27,6 +26,11 @@ const ExperienceCard = ({ experience }) => {
           <img
             src={experience.icon}
             alt={experience.company_name}
+            loading='lazy'
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = "/logo2.svg";
+            }}
             className='w-[60%] h-[60%] object-contain'
           />
         </div>

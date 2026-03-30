@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 
@@ -29,12 +29,21 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const serviceId = import.meta.env.VITE_APP_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      alert("Email service is not configured. Please check environment variables.");
+      return;
+    }
+
     setLoading(true);
 
     emailjs
       .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        serviceId,
+        templateId,
         {
           from_name: form.name,
           to_name: "JavaScript Mastery",
@@ -42,7 +51,7 @@ const Contact = () => {
           to_email: "sujata@jsmastery.pro",
           message: form.message,
         },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+        publicKey
       )
       .then(
         () => {
@@ -98,7 +107,7 @@ const Contact = () => {
               name='email'
               value={form.email}
               onChange={handleChange}
-              placeholder="What's your web address?"
+              placeholder='you@example.com'
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
           </label>
@@ -116,7 +125,8 @@ const Contact = () => {
 
           <button
             type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
+            disabled={loading}
+            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary disabled:opacity-60 disabled:cursor-not-allowed'
           >
             {loading ? "Sending..." : "Send"}
           </button>

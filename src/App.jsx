@@ -1,27 +1,36 @@
-import { BrowserRouter } from "react-router-dom"
-import { About , Contact , Experience ,Feedbacks , Hero , Navbar , Tech , Works , StarsCanvas } from "./components"
+import { BrowserRouter } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import About from "./components/About";
+import Hero from "./components/Hero";
+import Navbar from "./components/Navbar";
 
+const Experience = lazy(() => import("./components/Experience"));
+const Tech = lazy(() => import("./components/Tech"));
+const Works = lazy(() => import("./components/Works"));
+const Contact = lazy(() => import("./components/Contact"));
+const StarsCanvas = lazy(() => import("./components/canvas/Stars"));
 
 const App = () => {
   return (
     <BrowserRouter>
-    <div className="relative z-0 bg-primary">
-     <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
-       <Navbar />
-       <Hero />
-     </div>
-     <About />
-     <Experience />
-     <Tech />
-     <Works />
-     {/* <Feedbacks /> */}
-     <div className="relative z-0">
-       <Contact />
-       <StarsCanvas />
-     </div>
-    </div>
-   </BrowserRouter>
-  )
-}
+      <div className='relative z-0 bg-primary'>
+        <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
+          <Navbar />
+          <Hero />
+        </div>
+        <About />
+        <Suspense fallback={null}>
+          <Experience />
+          <Tech />
+          <Works />
+          <div className='relative z-0'>
+            <Contact />
+            <StarsCanvas />
+          </div>
+        </Suspense>
+      </div>
+    </BrowserRouter>
+  );
+};
 
-export default App
+export default App;
